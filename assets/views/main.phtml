@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taggr</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="dist/styles/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    var main_view = new Taggr.MainView({el: $('#content')});
+  });
+</script>
+
+<body>
+
+  <div id='main' style="position:relative;">
+
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">TAGGR</a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="content" style="position:relative;">
+      <div id="alert-message" class="row taggr-alert"> <!-- Show the different alert messages --></div>
+
+      <div id="content-carousel" class="carousel slide" style="position:relative;">
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+          <!-- Url entry view -->
+          <div class="item active">
+            <div id="url-entry">
+              <div class="jumbotron hero">
+                <div class="row landing">
+                    <div class="input-group col-md-5 col-md-offset-3">
+                        <input id="url-input" type="url" class="form-control" placeholder="Enter url">
+                        <span class="input-group-btn">
+                            <button id="load-button" class="btn btn-primary" type="button">
+                                <span class=" glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <img src="dist/styles/img/landing.png">
+              </div>
+            </div>
+          </div>
+
+          <!-- Source code exploration view -->
+          <div class="item">
+            <div id="page-source-view" class="panel">
+              <div class="row taggr-alert title-heading">
+                <div class='col-md-12 alert text-center'>
+                  <!-- <button type='button' class='close' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                  </button> -->
+                  <a id="close-source" class="left carousel-control close-source-button" role="button">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                  </a>
+                  <h3 class="panel-title text-center"></h3>
+                </div>
+              </div>
+
+              <div class="panel-body main-body">
+                <div class="row">
+                    <div class="col-md-10 col-height">
+                      <pre class="source-container">
+                        <!-- the raw page source will be rendered here -->
+                      </pre>
+                  </div>
+
+                  <div class="col-md-2 col-height">
+                    <div class="tag-list">
+                      <!-- each tag and its count will be rendered here -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min.js"></script>
+  <script src="dist/js/vendor.js"></script>
+  <script src="dist/js/app.js"></script>
+
+  <!-- BEGIN: Underscore Template Definition. -->
+  <script id="list-items-tpl", type="text/template" class="template">
+    <% tag_list.each(function(tag) { %>
+      <button class="list-group-item">
+        <span class="badge"><%- tag.get('count') %></span>
+        <span class="tag-title"><%- tag.get('title') %></span>
+      </button>
+    <% }); %>
+  </script>
+
+  <script id="message-tpl", type="text/template" class="template">
+    <div class='alert alert-danger' role='alert'>
+      <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+        <span aria-hidden='true'>&times;</span>
+      </button>
+      <%- message %>
+    </div>
+  </script>
+
+  <script id="loading-msg-tpl", type="text/template" class="template">
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+        <span>Loading ...</span>
+      </div>
+    </div>
+  </script>
+
+</body>
+
+</html>
