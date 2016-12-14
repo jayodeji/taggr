@@ -10,54 +10,54 @@ This app does the following:
 
 ### Coding Assumptions And Decisions
 
-1. All tags present in the html source code are highlighted. **This includes tags that might be present in javascript within script tags or any other tags that are actually not part of the page dom structure**
+* All tags present in the html source code are highlighted. **This includes tags that might be present in javascript within script tags or any other tags that are actually not part of the page dom structure**
 
-2. The highlighting applies to the attributes within the tags, so for instance in a tag like that below:
+* The highlighting applies to the attributes within the tags, so for instance in a tag like that below:
 ```html
 <div class='random'></div>
 ```
 The entire tag including its attributes will be highlighted.
 
-3. A regex was used to parse the tags for various reasons, while it is not advised to use a regex for parsing html, if I treat this exercise like a basic search for tags existing in a page, a regex should be sufficient. A regex would not be sufficient if decisions had to be made based on the data on the page however, so the that is the caveat in using a regex.
+* A regex was used to parse the tags for various reasons, while it is not advised to use a regex for parsing html, if I treat this exercise like a basic search for tags existing in a page, a regex should be sufficient. A regex would not be sufficient if decisions had to be made based on the data on the page however, so the that is the caveat in using a regex.
 
-4. I decided to do the highlighting purely on the client side in order to be more responsive and give instant feedback to the user. In addition, a regex was used on the client side to be quick and to be consistent with what was given by the regex from the server side.
+* I decided to do the highlighting purely on the client side in order to be more responsive and give instant feedback to the user. In addition, a regex was used on the client side to be quick and to be consistent with what was given by the regex from the server side.
 
-5. Both open and close tags are matched and counted and highlighted.
+* Both open and close tags are matched and counted and highlighted.
 
 See an example of a hosted taggr app [Here](https://calm-bayou-4983.herokuapp.com/)
 
 ### Running Locally And Local Development
 
-1. Make sure **php5.6** is installed on whatever system this code should be run in.
+* Make sure **php5.6** is installed on whatever system this code should be run in.
 
-2. Install **composer**. If it is not present. The following command run on the terminal should install composer in your system if not present.
+* Install **composer**. If it is not present. The following command run on the terminal should install composer in your system if not present.
 ```bash
 curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
 ```
 
-3. Install composer dependencies.
+* Install composer dependencies.
 ```bash
 composer install
 ```
 
-4. Install [node.js](https://nodejs.org/en/download/). Alternately, you can use nvm to setup management of node.js versions.
+* Install [node.js](https://nodejs.org/en/download/). Alternately, you can use nvm to setup management of node.js versions.
 ```bash
 touch ~/.bash_profile && curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
 ```
 
-5. Install all npm packages
+* Install all npm packages
 ```bash
 npm install
 ```
 
-6. If doing local development, start compiling js assets.
+* If doing local development, start compiling js assets.
 ```bash
 ./node_modules/.bin/gulp
 ```
 
-7. Start running development server. Make sure you are inside the root directory
+* Start running development server. Make sure you are inside the root directory
 ```bash
 php -S localhost:8000 -t public/
 ```
 
-8. Browse over to the [localhost](http://localhost:8000/) to see the page.
+* Browse over to the [localhost](http://localhost:8000/) to see the page.
