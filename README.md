@@ -25,3 +25,39 @@ The entire tag including its attributes will be highlighted.
 5. Both open and close tags are matched and counted and highlighted.
 
 See an example of a hosted taggr app [Here](https://calm-bayou-4983.herokuapp.com/)
+
+### Running Locally And Local Development
+
+1. Make sure **php5.6** is installed on whatever system this code should be run in.
+
+2. Install **composer**. If it is not present. The following command run on the terminal should install composer in your system if not present.
+```bash
+curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
+```
+
+3. Install composer dependencies.
+```bash
+composer install
+```
+
+4. Install [node.js](https://nodejs.org/en/download/). Alternately, you can use nvm to setup management of node.js versions.
+```bash
+touch ~/.bash_profile && curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
+```
+
+5. Install all npm packages
+```bash
+npm install
+```
+
+6. If doing local development, start compiling js assets.
+```bash
+./node_modules/.bin/gulp
+```
+
+7. Start running development server. Make sure you are inside the root directory
+```bash
+php -S localhost:8000 -t public/
+```
+
+8. Browse over to the [localhost](http://localhost:8000/) to see the page.
