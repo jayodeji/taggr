@@ -44,14 +44,32 @@ class Page {
   }
 
   protected function formatHtmlOutput($raw_html) {
-    return $raw_html;
+    return utf8_encode($raw_html);
   }
 
   protected function fetchRawHtml($url) {
-    $page = @file_get_contents(strtolower($url));
+    $page = $this->getPage($url);
     if ($page === false) {
       throw new Exception\PageCannotBeLoaded('Page cannot be loaded.');
     }
     return $page;
   }
+
+  protected function getPage($url) {
+    $ch = curl_init();
+    $timeout = 5;
+    //some sites block spiders
+    $user_agent = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)';
+    $options = array(
+      CURLOPT_URL => $url,
+      CURLOPT_RETURNTRANSFER => 1,
+      CURLOPT_CONNECTTIMEOUT => $timeout,
+      CURLOPT_USERAGENT => $user_agent
+    );
+    curl_setopt_array($ch, $options);
+    $data = curl_exec($ch);
+    curl_close($ch);
+    return $data;
+  }
+
 }

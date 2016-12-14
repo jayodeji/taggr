@@ -50,6 +50,11 @@ touch ~/.bash_profile && curl -o- https://raw.githubusercontent.com/creationix/n
 npm install
 ```
 
+* To run local tests, run the following command in the root folder
+```bash
+vendor/bin/phpunit tests/
+```
+
 * If doing local development, start compiling js assets.
 ```bash
 ./node_modules/.bin/gulp
